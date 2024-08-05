@@ -1,0 +1,42 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    color: #006AFF;
+}
+
+.logo h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: .05rem;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links li:last-of-type {
+    background-color: rgba(0, 106,255, 0.8);
+    padding: .5rem 1rem;
+    border-radius: 0.375rem;
+}
+
+.nav-links li:last-of-type a {
+    color: #f9f9f9;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #000;
+}

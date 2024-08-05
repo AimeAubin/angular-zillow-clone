@@ -13,7 +13,7 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [
     provideAnimationsAsync()

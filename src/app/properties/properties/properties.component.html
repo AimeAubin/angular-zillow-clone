@@ -3,16 +3,18 @@
     @for(property of properties$ |async; track property.zpid ){
     <div class="listing">
       <img
-        src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        [src]="property.media.propertyPhotoLinks.highResolutionLink"
         alt="House"
         width="300"
         height="200"
         class="listing-img"
       />
       <div class="listing-info">
-        <div class="price">{{ property.price.value | currency }}</div>
-        <!-- <div class="details">5,288 sqft lot - Lot / Land for sale</div> -->
-        <div class="address">{{ property.address.state }}</div>
+        <div class="price">{{ property.price.value| currency }}</div>
+        <div class="details">{{property.lotSizeWithUnit.lotSize | number}} sqft</div>
+        <div class="address">
+          {{ property.address | addressPipe }}
+        </div>
         <div class="agent">
           {{ property.propertyDisplayRules.mls.brokerName }}
         </div>

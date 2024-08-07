@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { PropertiesHttpService } from '../services/properties-http.service';
-import { select, Store } from '@ngrx/store';
-import { AppState } from '../../reducers';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { Property } from '../model/properties';
-import { selectAllProperties } from '../properties.selectors';
 
 @Component({
   selector: 'app-properties',
@@ -14,13 +11,15 @@ import { selectAllProperties } from '../properties.selectors';
 export class PropertiesComponent {
   properties$!: Observable<Property[]>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private propertiesHttpService: PropertiesHttpService) {}
 
   ngOnInit() {
     this.reload();
   }
 
   reload() {
-    this.properties$ = this.store.pipe(select(selectAllProperties));
+    this.properties$ = this.propertiesHttpService
+      .getAllProperties()
+      .pipe(shareReplay());
   }
 }

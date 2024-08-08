@@ -1,0 +1,54 @@
+<section class="container">
+  <div class="form-container">
+    <div class="title">
+      <h2>Welcome</h2>
+      <p>Create an account to join</p>
+    </div>
+    <form class="signup-form">
+      <div class="signup-inputs-container">
+        <div>
+          <label for="first_name">First Name</label>
+          <input
+            type="text"
+            name="first_name"
+            id="first_name"
+            placeholder="First Name"
+            class="first_name"
+          />
+        </div>
+
+        <div>
+          <label for="last_name">Last Name</label>
+          <input
+            type="text"
+            name="last_name"
+            id="last_name"
+            placeholder="Last Name"
+          />
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email"/>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            class="password"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="submit">Sign Up</button>
+      </div>
+
+      <a routerLink="/auth/login" class="login-link">Already have an account?</a>
+    </form>
+  </div>
+</section>

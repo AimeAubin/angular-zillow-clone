@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { CoreModule } from './core/core.module';
 import { PropertiesModule } from './properties/properties.module';
 import { provideHttpClient } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { provideHttpClient } from '@angular/common/http';
     AppRoutingModule,
     CoreModule,
     PropertiesModule,
+    AuthModule
   ],
   providers: [provideAnimationsAsync(), provideHttpClient()],
   bootstrap: [AppComponent],

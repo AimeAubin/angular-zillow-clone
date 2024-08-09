@@ -1,1 +1,41 @@
-<p>login works!</p>
+<section class="container">
+  <div class="form-container">
+    <div class="title">
+      <h2>Welcome Back</h2>
+      <p>Log into your account to continue</p>
+    </div>
+    <form class="login-form">
+      <div class="login-inputs-container">
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            class="email"
+          />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            class="password"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="submit">Login</button>
+      </div>
+
+      <a routerLink="/auth/signup" class="signup-link"
+        >Don&#39;t have an account?</a
+      >
+    </form>
+  </div>
+</section>

@@ -4,7 +4,7 @@
       <h2>Welcome Back</h2>
       <p>Log into your account to continue</p>
     </div>
-    <form class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="userLogin()" class="login-form">
       <div class="login-inputs-container">
         <div>
           <label for="email">Email</label>
@@ -13,6 +13,7 @@
             name="email"
             id="email"
             placeholder="Email"
+            formControlName="email"
             class="email"
           />
         </div>
@@ -24,6 +25,7 @@
             name="password"
             id="password"
             placeholder="Password"
+            formControlName="password"
             class="password"
           />
         </div>

@@ -4,7 +4,11 @@
       <h2>Welcome</h2>
       <p>Create an account to join</p>
     </div>
-    <form class="signup-form">
+    <form
+      [formGroup]="signupForm"
+      (ngSubmit)="userSignup()"
+      class="signup-form"
+    >
       <div class="signup-inputs-container">
         <div>
           <label for="first_name">First Name</label>
@@ -13,6 +17,7 @@
             name="first_name"
             id="first_name"
             placeholder="First Name"
+            formControlName="firstName"
             class="first_name"
           />
         </div>
@@ -24,12 +29,19 @@
             name="last_name"
             id="last_name"
             placeholder="Last Name"
+            formControlName="lastName"
           />
         </div>
 
         <div>
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Email"/>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+          />
         </div>
 
         <div>
@@ -39,6 +51,7 @@
             name="password"
             id="password"
             placeholder="Password"
+            formControlName="password"
             class="password"
           />
         </div>
@@ -48,7 +61,9 @@
         <button type="submit">Sign Up</button>
       </div>
 
-      <a routerLink="/auth/login" class="login-link">Already have an account?</a>
+      <a routerLink="/auth/login" class="login-link"
+        >Already have an account?</a
+      >
     </form>
   </div>
 </section>

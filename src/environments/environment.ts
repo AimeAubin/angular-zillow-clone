@@ -1,6 +1,8 @@
 export const environment = {
-  production: false,
+  production: true,
   rapidApiUrl: '',
   rapidApiKey: '',
   rapidApidhost: '',
+  authBaseUrl: '',
+  xapn: '',
 };

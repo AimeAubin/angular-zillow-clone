@@ -10,7 +10,6 @@
           <label for="email">Email</label>
           <input
             type="email"
-            name="email"
             id="email"
             placeholder="Email"
             formControlName="email"
@@ -22,7 +21,6 @@
           <label for="password">Password</label>
           <input
             type="password"
-            name="password"
             id="password"
             placeholder="Password"
             formControlName="password"
@@ -32,7 +30,7 @@
       </div>
 
       <div>
-        <button type="submit">Login</button>
+        <button type="submit" [disabled]="loginForm.invalid || isLoading()">Login</button>
       </div>
 
       <a routerLink="/auth/signup" class="signup-link"

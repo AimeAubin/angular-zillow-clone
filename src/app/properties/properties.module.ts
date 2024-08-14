@@ -6,11 +6,13 @@ import { PropertiesHttpService } from './services/properties-http.service';
 import { AddressPipe } from './pipes/address.pipe';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { customHeaderInterceptor } from './interceptors/custom-header.interceptor';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 export const propertiesRoutes: Routes = [
   {
     path: '',
     component: PropertiesComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

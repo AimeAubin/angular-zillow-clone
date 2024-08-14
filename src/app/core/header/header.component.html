@@ -6,8 +6,14 @@
     <li>
       <a routerLink="/properties">Properties</a>
     </li>
-    <li>
-      <a routerLink="/auth/login">Login</a>
-    </li>
+    @if(isLoggedOut$ | async){
+      <li>
+        <a routerLink="/auth/login">Login</a>
+      </li>
+    } @else if(isLoggedIn$ | async){
+      <li>
+        <a (click)="logout()">Logout</a>
+      </li>
+    }
   </ul>
 </nav>

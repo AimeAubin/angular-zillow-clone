@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthHttpService } from '../services/auth-http.service';
-import { catchError, tap, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { selectAuthFailure, selectAuthSuccess, selectIsLoading } from '../store/auth.selectors';
+import { AuthActions } from '../store/action-types';
+import { UserLogin } from '../model/auth';
 
 @Component({
   selector: 'app-login',
@@ -11,27 +11,19 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
+  store = inject(Store);
+  loginForm: FormGroup;
+  isLoading = this.store.selectSignal( selectIsLoading );
+  isError = this.store.selectSignal( selectAuthFailure );
+  isSuccess$ = this.store.select( selectAuthSuccess );
 
   constructor(
-    private authHttpService: AuthHttpService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.initForm();
-  }
-
-  initForm() {
+    private fb: FormBuilder  )
+  {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
-  }
-
-  get formControls() {
-    return this.loginForm.controls;
   }
 
   userLogin() {
@@ -39,35 +31,8 @@ export class LoginComponent {
       return;
     }
 
-    const { email, password } = this.loginForm.value;
+    const user:UserLogin = this.loginForm.value;
 
-    this.authHttpService
-      .login({
-        email,
-        password,
-      })
-      .pipe(
-        tap( ( res ) => console.log( res ) ),
-        catchError(this.handleError)
-      )
-      .subscribe({
-        next: (res) => {
-          this.router.navigate(['/properties']);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
-
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occured!';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.statusText}`;
-    } else {
-      errorMessage = `Error: ${error.error.error}`;
-    }
-
-    return throwError(() => new Error(errorMessage));
+    this.store.dispatch( AuthActions.login( { user } ) );
   }
 }

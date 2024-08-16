@@ -13,6 +13,9 @@ export interface Property {
     lotSize: number;
     lotSizeUnit: string;
   };
+  listing: {
+    listingStatus: string;
+  };
   propertyType: string;
   media: {
     propertyPhotoLinks: {

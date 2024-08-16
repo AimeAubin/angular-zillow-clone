@@ -1,3 +1,48 @@
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.property-type-dropdown {
+    appearance: none;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    color: #495057;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 36px 10px 12px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 100%;
+    max-width: 300px;
+
+    // Custom dropdown arrow
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23495057'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+
+    &:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    &:hover {
+        border-color: #b8c2cc;
+    }
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
 section.properties-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

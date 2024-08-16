@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PropertiesEffects } from './store/properties.effects';
 import { StoreModule } from '@ngrx/store';
 import { propertiesReducer } from './reducers/property.reducers';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export const propertiesRoutes: Routes = [
   {
@@ -28,6 +29,7 @@ export const propertiesRoutes: Routes = [
   declarations: [PropertiesComponent, AddressPipe],
   imports: [
     CommonModule,
+    MatTabsModule,
     RouterModule.forChild(propertiesRoutes),
     EffectsModule.forFeature([PropertiesEffects]),
     StoreModule.forFeature('properties', propertiesReducer),

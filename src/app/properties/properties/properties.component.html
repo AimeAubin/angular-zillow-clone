@@ -1,4 +1,11 @@
 <main>
+  <div class="dropdown-container">
+    <select (change)="onPropertyTypeChange($event)" class="property-type-dropdown">
+      @for(type of propertyTypes;track type.value){
+        <option [value]="type.value">{{type.label}}</option>
+      }
+    </select>
+  </div>
   <section class="properties-container">
     @for(property of properties$ |async; track property.zpid ){
     <div class="listing">
@@ -11,7 +18,6 @@
       />
       <div class="listing-info">
         <div class="price">{{ property.price.value| currency }}</div>
-        <div class="details">{{property.lotSizeWithUnit.lotSize | number}} sqft</div>
         <div class="address">
           {{ property.address | addressPipe }}
         </div>

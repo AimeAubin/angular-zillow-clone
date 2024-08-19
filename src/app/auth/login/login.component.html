@@ -5,6 +5,11 @@
       <p>Log into your account to continue</p>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="userLogin()" class="login-form">
+      @if(successMessage){
+      <div class="success-message">
+        {{successMessage}}
+      </div>
+    }
       <div class="login-inputs-container">
         <div>
           <label for="email">Email</label>
@@ -14,6 +19,7 @@
             placeholder="Email"
             formControlName="email"
             class="email"
+            [class.input-invalid]="formControls['email'].invalid && (formControls['email'].touched || formControls['email'].dirty)"
           />
         </div>
 
@@ -25,6 +31,7 @@
             placeholder="Password"
             formControlName="password"
             class="password"
+            [class.input-invalid]="formControls['password'].invalid && (formControls['password'].touched || formControls['password'].dirty)"
           />
         </div>
       </div>

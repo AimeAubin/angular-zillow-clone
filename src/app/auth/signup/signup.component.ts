@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   signupForm!: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(
     private authHttpService: AuthHttpService,
@@ -38,8 +40,12 @@ export class SignupComponent {
 
   userSignup() {
     if (this.signupForm.invalid) {
+      this.errorMessage = 'Please fill out all the required fields correctly.';
       return;
     }
+
+    this.errorMessage = '';
+    this.successMessage = '';
 
     const { firstName, lastName, email, password } = this.signupForm.value;
 
@@ -52,14 +58,17 @@ export class SignupComponent {
       })
       .pipe(
         tap((res) => console.log(res)),
-        catchError(this.handleError)
+        catchError(this.handleError.bind(this))
       )
       .subscribe({
         next: () => {
-          this.router.navigate(['/auth/login']);
+          this.successMessage = 'Sign up successful! Redirecting to login...';
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 2000);
         },
-        error: (err) => {
-          console.log(err);
+        error: ( err ) => {
+          this.errorMessage = err.message;
         },
       });
   }
@@ -67,9 +76,9 @@ export class SignupComponent {
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occured!';
     if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.statusText}`;
+      errorMessage = `${error.statusText}`;
     } else {
-      errorMessage = `Error: ${error.error.error}`;
+      errorMessage = `${error.error.error}`;
     }
 
     return throwError(() => new Error(errorMessage));

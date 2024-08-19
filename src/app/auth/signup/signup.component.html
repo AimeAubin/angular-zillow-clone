@@ -9,6 +9,16 @@
       (ngSubmit)="userSignup()"
       class="signup-form"
     >
+    @if(successMessage){
+      <div class="success-message">
+        {{successMessage}}
+      </div>
+    }
+    @if(errorMessage){
+      <div class="error-message">
+        {{errorMessage}}
+      </div>
+    }
       <div class="signup-inputs-container">
         <div>
           <label for="first_name">First Name</label>
@@ -19,6 +29,7 @@
             placeholder="First Name"
             formControlName="firstName"
             class="first_name"
+            [class.input-invalid]="formControls['firstName'].invalid && (formControls['firstName'].touched || formControls['firstName'].dirty)"
           />
         </div>
 
@@ -30,6 +41,7 @@
             id="last_name"
             placeholder="Last Name"
             formControlName="lastName"
+            [class.input-invalid]="formControls['lastName'].invalid && (formControls['lastName'].touched || formControls['lastName'].dirty)"
           />
         </div>
 
@@ -41,6 +53,7 @@
             id="email"
             placeholder="Email"
             formControlName="email"
+            [class.input-invalid]="formControls['email'].invalid && (formControls['email'].touched || formControls['email'].dirty)"
           />
         </div>
 
@@ -53,12 +66,13 @@
             placeholder="Password"
             formControlName="password"
             class="password"
+            [class.input-invalid]="formControls['password'].invalid && (formControls['password'].touched || formControls['password'].dirty)"
           />
         </div>
       </div>
 
       <div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
       </div>
 
       <a routerLink="/auth/login" class="login-link"

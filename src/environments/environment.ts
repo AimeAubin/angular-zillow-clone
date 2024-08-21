@@ -5,4 +5,4 @@ export const environment = {
   rapidApidhost: '',
   authBaseUrl: '',
   xapn: '',
-};
+  };
